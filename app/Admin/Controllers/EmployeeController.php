@@ -53,11 +53,11 @@ class EmployeeController extends AdminController
 
 
         // 设置text、color、和存储值
-        $states = [
-            'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
-            'off' => ['value' => 2, 'text' => '关闭', 'color' => 'default'],
-        ];
-        $grid->status('状态')->switch($states);
+//        $states = [
+//            'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
+//            'off' => ['value' => 2, 'text' => '关闭', 'color' => 'default'],
+//        ];
+//        $grid->status('状态')->switch($states);
 
 
         return $grid;
@@ -79,7 +79,12 @@ class EmployeeController extends AdminController
         $show->field('mail', __('Mail'));
         $show->field('password', __('Password'));
         $show->field('department', __('Department'));
-
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+                $tools->disableList();
+                $tools->disableDelete();
+            });;
         return $show;
     }
 
