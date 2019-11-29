@@ -46,19 +46,7 @@ class EmployeeController extends AdminController
         // 添加新的字段过滤器（通过工号过滤）
         $filter->like('number', '工号');
     });
-
     return $grid;
-
-//        $grid = new Grid(new Employee);
-//
-//        $grid->column('id', __('Id'));
-//        $grid->column('number', __('Number'));
-//        $grid->column('name', __('Name'));
-//        $grid->column('mail', __('Mail'));
-//        $grid->column('password', __('Password'));
-//        $grid->column('department', __('Department'));
-//
-//        return $grid;
     }
 
     /**
