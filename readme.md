@@ -66,3 +66,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ##参考文档
 https://www.jianshu.com/p/a5382761301a
+
+https://github.com/laravel-admin-extensions/chartjs

@@ -12,23 +12,11 @@ class HomeController extends Controller
 {
     public function index(Content $content)
     {
+        $statistics = [];
         return $content
-            ->title('Dashboard')
-            ->description('Description...')
+            ->title('首页')
+            ->description('统计指标')
             ->row(Dashboard::title())
-            ->row(function (Row $row) {
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::environment());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
-                });
-            });
+            ->view('welcome', compact('statistics'));
     }
 }
