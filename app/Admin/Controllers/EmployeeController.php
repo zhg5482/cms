@@ -40,13 +40,27 @@ class EmployeeController extends AdminController
 
         $grid->filter(function($filter){
 
-        // 去掉默认的 id 过滤器
-        $filter->disableIdFilter();
+            // 去掉默认的 id 过滤器
+            $filter->disableIdFilter();
 
-        // 添加新的字段过滤器（通过工号过滤）
-        $filter->like('number', '工号');
-    });
-    return $grid;
+            // 添加新的字段过滤器（通过工号过滤）
+            $filter->like('number', '工号');
+        });
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableEdit();
+            $actions->disableDelete();
+        });
+
+
+        // 设置text、color、和存储值
+        $states = [
+            'on'  => ['value' => 1, 'text' => '打开', 'color' => 'primary'],
+            'off' => ['value' => 2, 'text' => '关闭', 'color' => 'default'],
+        ];
+        $grid->status('状态')->switch($states);
+
+
+        return $grid;
     }
 
     /**
@@ -84,6 +98,14 @@ class EmployeeController extends AdminController
         $form->password('password', __('Password'));
         $form->text('department', __('Department'));
 
+        $form->tools(function (Form\Tools $tools) {
+
+            // 去掉`删除`按钮
+            $tools->disableDelete();
+
+            // 添加一个按钮, 参数可以是字符串, 或者实现了Renderable或Htmlable接口的对象实例
+            $tools->add('<a class="btn btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;delete</a>');
+        });
         return $form;
     }
 }

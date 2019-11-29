@@ -18,4 +18,37 @@
  *
  */
 
+use Encore\Admin\Grid;
+
+Grid::init(function (Grid $grid) {
+
+    //$grid->disableActions();
+
+    //$grid->disablePagination();
+
+    //$grid->disableCreateButton();
+
+    $grid->disableFilter();
+
+    //$grid->disableRowSelector();
+
+    //$grid->disableColumnSelector();
+
+    //$grid->disableTools();
+
+    //$grid->disableExport();
+
+    $grid->actions(function (Grid\Displayers\Actions $actions) {
+        //$actions->disableView();
+        //$actions->disableEdit();
+        $actions->disableDelete();
+    });
+    $grid->tools(function ($tools) {
+        $tools->batch(function ($batch) {
+            $batch->disableDelete();
+        });
+    });
+});
+
 Encore\Admin\Form::forget(['map', 'editor']);
+
